@@ -10,6 +10,11 @@ android {
     }
 
     resourcePrefix 'permission'
+
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {

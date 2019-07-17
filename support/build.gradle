@@ -1,5 +1,5 @@
 apply plugin: rootProject.ext.plugins.library
-
+apply plugin: 'com.novoda.bintray-release'
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
@@ -10,8 +10,32 @@ android {
     }
 
     resourcePrefix 'permission'
+
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {
     api 'com.android.support:support-fragment:28.0.0'
+}
+
+repositories {
+    mavenCentral()
+    tasks.withType(Javadoc) {
+        options{ encoding "UTF-8"
+            charSet 'UTF-8'
+            links "http://docs.oracle.com/javase/7/docs/api"
+        }
+    }
+}
+
+publish{
+    userOrg = 'jinliancheng120'
+    groupId = 'com.littlemango'
+    artifactId = 'permission'
+    publishVersion = '1.0.0'
+    desc = 'Fork 项目，增加onError回调'
+    website = 'https://github.com/LittleMango/AndPermission'
 }
